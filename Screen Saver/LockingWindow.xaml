@@ -1,0 +1,20 @@
+﻿<Window x:Class="Screen_Saver.LockingWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
+        xmlns:local="clr-namespace:Screen_Saver"
+        mc:Ignorable="d"
+        WindowState="Maximized"
+        Title="LockingWindow" Name="title" WindowStyle="None" Closing="Window_Closing" Topmost="True" ResizeMode="NoResize" Height="720.64" Width="963.309" KeyDown="title_KeyDown" PreviewKeyDown="title_PreviewKeyDown" >
+    
+    <Grid>
+        <Grid.Background>
+            <ImageBrush Stretch="Fill" ImageSource="image/UI_default.png" AlignmentY="Top" AlignmentX="Center"/>
+        </Grid.Background>
+        <Image x:Name="image"/>
+        <Button Click="Button_Click" Background="Transparent" BorderBrush="Transparent" Foreground="Transparent" OpacityMask="Transparent"/>
+        <Label Name="clock" Content="Clock" FontSize="72" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="White"/>
+    </Grid>
+</Window>

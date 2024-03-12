@@ -1,0 +1,42 @@
+﻿<Window x:Class="Screen_Saver.LockingSolve"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Screen_Saver"
+        mc:Ignorable="d"
+        Icon="Icon.ico"
+        Title="듀공 화면 잠금기 : 화면 잠금 해제" Height="717.245" Width="960.04" Topmost="True" ResizeMode="NoResize" WindowStyle="None" KeyDown="Window_KeyDown">
+    <Grid>
+        <Canvas>
+            <Image Stretch="Fill" Source="image/듀공_비밀번호_해제.png"/>
+            <Button HorizontalAlignment="Left" Height="44" VerticalAlignment="Top" Width="149" Click="Button_Click" Canvas.Left="407" Canvas.Top="525" Background="Transparent" BorderBrush="Transparent" FontFamily="NanumGothic" FontSize="16" FontWeight="Bold" RenderTransformOrigin="2.646,7.134" Cursor="Hand">
+                <Button.OpacityMask>
+                    <ImageBrush/>
+                </Button.OpacityMask>
+                <Button.Foreground>
+                    <ImageBrush/>
+                </Button.Foreground>
+                <PasswordBox/>
+            </Button>
+            <TextBox Name ="PW"  HorizontalAlignment="Left" Height="45" TextWrapping="Wrap" Text="비밀번호 입력" VerticalAlignment="Top" Width="604" Canvas.Left="179" Canvas.Top="436" Background="Transparent" BorderBrush="Transparent" FontFamily="NanumGothic" FontSize="36" OpacityMask="Black" Foreground="Black" SelectionBrush="Black" CaretBrush="Black" GotFocus="PW_GotFocus"/>
+            <PasswordBox Name ="PPW"  Height="45" VerticalAlignment="Top" Width="604" Canvas.Left="179" Canvas.Top="436" Visibility="Hidden" Background="Transparent" BorderBrush="Transparent" FontFamily="NanumGothic" FontSize="36" OpacityMask="Black" Foreground="Black" SelectionBrush="Black" CaretBrush="Black" />
+            <Button Content="Button" Height="47" Canvas.Left="882" Width="52" Click="Button_Click_1" Canvas.Top="24" Cursor="Hand">
+                <Button.OpacityMask>
+                    <ImageBrush/>
+                </Button.OpacityMask>
+                <Button.Background>
+                    <ImageBrush/>
+                </Button.Background>
+                <Button.BorderBrush>
+                    <ImageBrush/>
+                </Button.BorderBrush>
+                <Button.Foreground>
+                    <ImageBrush/>
+                </Button.Foreground>
+            </Button>
+
+        </Canvas>
+
+    </Grid>
+</Window>

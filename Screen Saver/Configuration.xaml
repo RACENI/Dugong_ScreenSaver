@@ -1,0 +1,20 @@
+﻿<Window x:Class="Screen_Saver.Configuration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Screen_Saver"
+        mc:Ignorable="d"
+        Icon="Icon.ico"
+        Title="듀공 화면 잠금기 : 환경설정" Height="747.5" Width="963.5" Loaded="Window_Loaded_1" ResizeMode="NoResize" >
+    <Grid>
+        <Canvas>
+            <Image Stretch="Fill" Source="image/세팅창.png"/>
+        </Canvas>
+        <CheckBox Name="tray" HorizontalAlignment="Left" Margin="123,198,0,0" VerticalAlignment="Top" Checked="Tray_Checked" Unchecked="Tray_Unchecked" Height="17" Width="156" Cursor="Hand"/>
+        <CheckBox Name="clock" HorizontalAlignment="Left" Margin="123,146,0,0" VerticalAlignment="Top" Checked="Clock_Checked" Unchecked="Clock_Unchecked" Height="17" Width="202" Cursor="Hand"/>
+        <CheckBox Name="transparent" HorizontalAlignment="Left" Margin="123,294,0,0" VerticalAlignment="Top" Checked="transparent_Checked" Unchecked="transparent_Unchecked" Height="17" Width="256" Cursor="Hand"/>
+        <CheckBox Name="maple" HorizontalAlignment="Left" Margin="123,249,0,0" VerticalAlignment="Top" Checked="Maple_Checked" Unchecked="Maple_Unchecked" Height="17" Width="256" Cursor="Hand"/>
+
+    </Grid>
+</Window>
