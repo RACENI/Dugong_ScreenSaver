@@ -5,6 +5,7 @@ using System.IO;
 using System.Net;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 using static Screen_Saver.HotKeyClass;
 
 namespace Screen_Saver
@@ -14,6 +15,7 @@ namespace Screen_Saver
         public MainWindow()
         {
             InitializeComponent();
+
 
             width = window.Width;
             height = window.Height;
@@ -33,6 +35,7 @@ namespace Screen_Saver
 
         private void timer_Tick(object sender, EventArgs e)
         {
+            int test = 0;
             bool mapleon = false;
             Process[] ProcessList = Process.GetProcessesByName("MapleStory");
             if (mapleon == false && ProcessList.Length > 0)
@@ -41,11 +44,12 @@ namespace Screen_Saver
             }
             else if (mapleon == true && ProcessList.Length < 1)
             {
-
                 //Process.Start("shutdown.exe", "-s -t 5");
             }
+            label1.Content = test.ToString();
+            test++;
+            MessageBox.Show(test.ToString());
         }
-
 
         // 화면 잠그기 버튼 //
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -343,8 +347,17 @@ namespace Screen_Saver
                 FileInfo fi = new FileInfo(path_ui); // UI
                 if (fi.Exists)
                 {
-                    Window LW = new LockingWindow(); // 윈도우 불러오는 부분이 장애가 생김.
+                    DispatcherTimer timer = new DispatcherTimer();    //객체생성
+                    timer.Interval = TimeSpan.FromMilliseconds(100);    //시간간격 설정
+                    timer.Tick += new EventHandler(timer_Tick);          //이벤트 추가
+                   // if (RegistryKeySetting.GetValue("maple") == "is")
+                   // {
+                        timer.Start();                                       //타이머 시작. 종료는 timer.Stop();
+                   // }
+
+                    Window LW = new LockingWindow(timer);
                     LW.ShowDialog();
+                    
                 }
                 else
                 {

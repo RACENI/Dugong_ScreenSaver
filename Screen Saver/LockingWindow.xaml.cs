@@ -10,11 +10,15 @@ namespace Screen_Saver
 {
     public partial class LockingWindow : Window
     {
-        private DispatcherTimer timer = new DispatcherTimer();
+        private DispatcherTimer clock_timer = new DispatcherTimer();
+        private DispatcherTimer maple_timer;
 
-        public LockingWindow()
+
+        public LockingWindow(DispatcherTimer timer)
         {
             InitializeComponent();
+
+            maple_timer = timer; // 메이플 타이머 인수로 받아와서 값 넣기
 
             clock.Content = "";
 
@@ -22,9 +26,9 @@ namespace Screen_Saver
 
             if (RegistryKeySetting.GetValue("clock") != null)
             {
-                timer.Interval = TimeSpan.FromSeconds(1);
-                timer.Tick += new EventHandler(timer_Tick);
-                timer.Start();
+                clock_timer.Interval = TimeSpan.FromSeconds(1);
+                clock_timer.Tick += new EventHandler(timer_Tick);
+                clock_timer.Start();
                 // 시계 추가 가즈앗!
             }
 
@@ -56,7 +60,8 @@ namespace Screen_Saver
         // Alt + F4 disabled //
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            timer.Stop();
+            clock_timer.Stop();
+            maple_timer.Stop();
             // e.Cancel = true; //본 프로그램 배포시 주석 제거 요망
         }
         private void title_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
