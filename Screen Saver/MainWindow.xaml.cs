@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
+using System.Net.Sockets;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
@@ -32,10 +33,9 @@ namespace Screen_Saver
         }
 
 
-
         private void timer_Tick(object sender, EventArgs e)
         {
-            int test = 0;
+           
             bool mapleon = false;
             Process[] ProcessList = Process.GetProcessesByName("MapleStory");
             if (mapleon == false && ProcessList.Length > 0)
@@ -46,9 +46,6 @@ namespace Screen_Saver
             {
                 //Process.Start("shutdown.exe", "-s -t 5");
             }
-            label1.Content = test.ToString();
-            test++;
-            MessageBox.Show(test.ToString());
         }
 
         // 화면 잠그기 버튼 //
@@ -350,12 +347,15 @@ namespace Screen_Saver
                     DispatcherTimer timer = new DispatcherTimer();    //객체생성
                     timer.Interval = TimeSpan.FromMilliseconds(100);    //시간간격 설정
                     timer.Tick += new EventHandler(timer_Tick);          //이벤트 추가
-                   // if (RegistryKeySetting.GetValue("maple") == "is")
-                   // {
-                        timer.Start();                                       //타이머 시작. 종료는 timer.Stop();
-                   // }
+                     if (RegistryKeySetting.GetValue("maple") == "is")
+                    {
+                        //서버열기
+                        
 
-                    Window LW = new LockingWindow(timer);
+                        timer.Start();                                       //타이머 시작. 종료는 timer.Stop();
+                    }
+
+                    Window LW = new LockingWindow(timer); // 폼 종료시 타이머 멈출 수 있게 객체로 던짐
                     LW.ShowDialog();
                     
                 }
