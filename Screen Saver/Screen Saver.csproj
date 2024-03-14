@@ -114,6 +114,7 @@
     <Compile Include="AESEncryptDecrypt.cs" />
     <Compile Include="fsetting.cs" />
     <Compile Include="RegistryKeySetting.cs" />
+    <Compile Include="TcpServer.cs" />
     <Page Include="APW.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

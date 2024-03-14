@@ -13,6 +13,8 @@ namespace Screen_Saver
         private DispatcherTimer clock_timer = new DispatcherTimer();
         private DispatcherTimer maple_timer;
 
+        private TcpServer tcpServer;
+
 
         public LockingWindow(DispatcherTimer timer)
         {
@@ -42,6 +44,11 @@ namespace Screen_Saver
                 title.AllowsTransparency = true;
             }
 
+            if(RegistryKeySetting.GetValue("maple") != null)
+            {
+                tcpServer = new TcpServer();
+                tcpServer.ThreadStart();
+            }
         }
 
         // 로그인창 뜨게 끔 //
@@ -62,6 +69,7 @@ namespace Screen_Saver
         {
             clock_timer.Stop();
             maple_timer.Stop();
+            tcpServer = null;
             // e.Cancel = true; //본 프로그램 배포시 주석 제거 요망
         }
         private void title_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
