@@ -54,13 +54,13 @@ namespace Screen_Saver
         // 로그인창 뜨게 끔 //
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Window LockingSolve = new LockingSolve();
+            Window LockingSolve = new LockingSolve(this);
             LockingSolve.ShowDialog();
         }
 
         private void title_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            Window LockingSolve = new LockingSolve();
+            Window LockingSolve = new LockingSolve(this);
             LockingSolve.ShowDialog();
         }
 

@@ -20,11 +20,6 @@ namespace Screen_Saver
         Thread thread1;
         TcpListener tcpListener1;
 
-        //생성자
-       public TcpServer()
-        {
-            Console.WriteLine("tcp서버 객체가 만들어졌습니다.");
-        }
         ~TcpServer()
         {
             tcpListener1.Stop();
