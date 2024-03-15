@@ -18,13 +18,11 @@ namespace Screen_Saver
             InitializeComponent();
 
 
-            width = window.Width;
-            height = window.Height;
+            // 초기화
+            Initialize();
 
-            if (RegistryKeySetting.GetValue("extension") == null)
-            {
-                RegistryKeySetting.SetValue("extension", "png");
-            }
+            // 이미지 확장자 기본값 설정
+            SetDefaultExtension();
 
             /*            DispatcherTimer timer = new DispatcherTimer();    //객체생성
                         timer.Interval = TimeSpan.FromMilliseconds(1000 * 5);    //시간간격 설정
@@ -32,8 +30,29 @@ namespace Screen_Saver
                         timer.Start();                                       //타이머 시작. 종료는 timer.Stop(); 으로 한다*/
         }
 
+        // 초기화 메서드
+        private void Initialize()
+        {
+            // 폼 크기 초기화
+            InitializeWindowSize();
+            // 핫키 설정
+            SetupHotKey();
+        }
 
+        // 폼 크기 초기화
+        private void InitializeWindowSize()
+        {
+            width = window.Width;
+            height = window.Height;
+        }
 
+        private void SetDefaultExtension()
+        {
+            if (RegistryKeySetting.GetValue("extension") == null)
+            {
+                RegistryKeySetting.SetValue("extension", "png");
+            }
+        }
 
         // 화면 잠그기 버튼 //
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -45,117 +64,7 @@ namespace Screen_Saver
         // 사진 변경(jpg, png, bmp, gif 지원) //
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult a = MessageBox.Show("기본 이미지로 변경하시겠습니까?\r\n※아니오를 선택하면 원하는 사진을 고를 수 있는 창이 나옵니다.", fsetting.cap, MessageBoxButton.YesNoCancel);
-            if (a == MessageBoxResult.No)
-            {
-                OpenFileDialog openDialog = new OpenFileDialog();
-                openDialog.Filter = "사진 파일 (*.jpg, *.bmp, *.png, *wdp, *gif, *tif) | *.jpg; *.bmp; *.png; *.wdp; *.gif; *.tif;";
-                if (openDialog.ShowDialog() == true)
-                {
-                    if (File.Exists(openDialog.FileName))
-                    {
-                        string First = @openDialog.FileName;
-                        string check = Path.GetExtension(First);
-
-                        try
-                        {
-                            // 파일 확장자 체크 //
-                            switch (check.ToLower()) //check 모두 소문자로 변경
-                            {
-                                case ".jpg":
-                                    string Second = @"image\\UI.jpg";
-
-                                    usingpicturedel(); // 기존 사진 파일 제거
-
-                                    RegistryKeySetting.SetValue("extension", "jpg");
-                                    File.Copy(First, Second, true);
-                                    MessageBox.Show("사진 변경이 완료 되었습니다.", fsetting.cap);
-                                    break;
-
-                                case ".bmp":
-                                    Second = @"image\\UI.bmp";
-
-                                    usingpicturedel(); // 기존 사진 파일 제거
-
-                                    RegistryKeySetting.SetValue("extension", "bmp");
-                                    File.Copy(First, Second, true);
-                                    MessageBox.Show("사진 변경이 완료 되었습니다.", fsetting.cap);
-                                    break;
-
-                                case ".png":
-
-                                    Second = @"image\\UI.png";
-
-                                    usingpicturedel(); // 기존 사진 파일 제거
-
-                                    RegistryKeySetting.SetValue("extension", "png");
-                                    File.Copy(First, Second, true);
-                                    MessageBox.Show("사진 변경이 완료 되었습니다.", fsetting.cap);
-                                    break;
-
-
-                                case ".wdp":
-
-                                    Second = @"image\\UI.wdp";
-
-                                    usingpicturedel(); // 기존 사진 파일 제거
-
-                                    RegistryKeySetting.SetValue("extension", "wdp");
-                                    File.Copy(First, Second, true);
-                                    MessageBox.Show("사진 변경이 완료 되었습니다.", fsetting.cap);
-                                    break;
-
-                                case ".gif":
-                                    Second = @"image\\UI.gif";
-
-                                    usingpicturedel(); // 기존 사진 파일 제거
-
-                                    RegistryKeySetting.SetValue("extension", "gif");
-                                    File.Copy(First, Second, true);
-                                    MessageBox.Show("사진 변경이 완료 되었습니다.", fsetting.cap);
-                                    break;
-
-
-                                case ".tif":
-                                    Second = @"image\\UI.tif";
-
-                                    usingpicturedel(); // 기존 사진 파일 제거
-
-                                    RegistryKeySetting.SetValue("extension", "tif");
-                                    File.Copy(First, Second, true);
-                                    MessageBox.Show("사진 변경이 완료 되었습니다.", fsetting.cap);
-                                    break;
-
-                                default:
-                                    MessageBox.Show("이미지를 변경하는 데 오류가 발생했습니다." +
-                                        "\r\n파일 확장자를 소문자로 변경해주십시오.", fsetting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
-                                    break;
-                            }
-                        }
-                        catch
-                        {
-                            MessageBox.Show("창이 열려 있지 않은지 확인하십시오.", fsetting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
-                        }
-                    }
-                }
-            }
-            else if (a == MessageBoxResult.Yes)
-            {
-                try
-                {
-                    File.Copy(@"image\\UI_default.png", @"image\\UI.png", true);
-                    RegistryKeySetting.SetValue("extension", "png");
-                    MessageBox.Show("사진 변경이 완료 되었습니다.", fsetting.cap);
-                }
-                catch (FileNotFoundException)
-                {
-                    MessageBox.Show("파일을 찾을 수 없습니다!", fsetting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                catch
-                {
-                    MessageBox.Show("알 수 없는 오류 발생!", fsetting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
+            ChangeImage();
         }
 
         // 비밀번호 설정창 오픈 //
@@ -188,45 +97,7 @@ namespace Screen_Saver
         // 버전 체크 //
         private void MenuItem_Click_3(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                string NowVersion = "2.0";
-
-                var req = WebRequest.CreateHttp("http://screen.uy.to/");
-
-                using (var res = req.GetResponse())
-                {
-                    using (var stream = res.GetResponseStream())
-                    {
-                        using (var reader = new StreamReader(stream))
-                        {
-                            var remoteVersion = reader.ReadLine().TrimEnd();
-
-                            if (NowVersion == remoteVersion)
-                            {
-                                MessageBox.Show("최신 버전 입니다."
-                                    + "\r\n현재버전 : " + NowVersion
-                                    + "\r\n최신버전 : " + remoteVersion, fsetting.cap);
-                            }
-                            else
-                            {
-                                if (MessageBox.Show("구 버전 입니다."
-                                     + "\r\n현재버전 : " + NowVersion
-                                     + "\r\n최신버전 : " + remoteVersion
-                                     + "\r\n\r\n확인을 누르면 다운로드 페이지로 이동합니다.", fsetting.cap, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                                {
-                                    Process.Start("https://saracenletter.tistory.com/214");
-                                }
-                            }
-
-                        }
-                    }
-                }
-            }
-            catch
-            {
-                MessageBox.Show("인터넷 연결 상태를 확인하십시오.", fsetting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            CheckVersion();
         }
 
         // 사용법 //
@@ -248,8 +119,8 @@ namespace Screen_Saver
         // 환경 설정창 오픈 //
         private void MenuItem_Click_5(object sender, RoutedEventArgs e)
         {
-            Window Con = new Configuration();
-            Con.ShowDialog();
+            Window configurationWindow = new Configuration();
+            configurationWindow.ShowDialog();
         }
 
         //비밀번호 초기화//
@@ -266,7 +137,7 @@ namespace Screen_Saver
                 }
                 catch
                 {
-                    MessageBox.Show("알 수 없는 오류 발생!", fsetting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("오류가 발생했습니다!", fsetting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -316,7 +187,162 @@ namespace Screen_Saver
         }
 
 
+
+        ///////////////////////////
         //MainWindow 관련 메서드들//
+        ///////////////////////////
+
+        private void CheckVersion()
+        {
+            try
+            {
+                string NowVersion = "2.0";
+
+                var req = WebRequest.CreateHttp("http://screen.uy.to/");
+
+                using (var res = req.GetResponse())
+                {
+                    using (var stream = res.GetResponseStream())
+                    {
+                        using (var reader = new StreamReader(stream))
+                        {
+                            var remoteVersion = reader.ReadLine().TrimEnd();
+
+                            if (NowVersion == remoteVersion)
+                            {
+                                MessageBox.Show("최신 버전 입니다."
+                                    + "\r\n현재버전 : " + NowVersion
+                                    + "\r\n최신버전 : " + remoteVersion, fsetting.cap);
+                            }
+                            else
+                            {
+                                if (MessageBox.Show("구 버전 입니다."
+                                     + "\r\n현재버전 : " + NowVersion
+                                     + "\r\n최신버전 : " + remoteVersion
+                                     + "\r\n\r\n확인을 누르면 다운로드 페이지로 이동합니다.", fsetting.cap, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                                {
+                                    Process.Start("https://saracenletter.tistory.com/214");
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("인터넷 연결 상태를 확인하십시오.", fsetting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void ChangeImage()
+        {
+            MessageBoxResult result = MessageBox.Show("기본 이미지로 변경하시겠습니까?\r\n※아니오를 선택하면 원하는 사진을 고를 수 있는 창이 나옵니다.", fsetting.cap, MessageBoxButton.YesNoCancel);
+
+            if (result == MessageBoxResult.No)
+            {
+                OpenImageFileDialog();
+            }
+            else if (result == MessageBoxResult.Yes)
+            {
+                RestoreDefaultImage();
+            }
+        }
+
+        // 파일 대화상자를 통해 이미지 열기
+        private void OpenImageFileDialog()
+        {
+            OpenFileDialog openDialog = new OpenFileDialog();
+            openDialog.Filter = "사진 파일 (*.jpg, *.bmp, *.png, *wdp, *gif, *tif) | *.jpg; *.bmp; *.png; *.wdp; *.gif; *.tif;";
+
+            if (openDialog.ShowDialog() == true)
+            {
+                if (File.Exists(openDialog.FileName))
+                {
+                    string selectedFile = openDialog.FileName;
+                    string extension = Path.GetExtension(selectedFile).ToLower();
+
+                    // 파일 확장자에 따라 처리
+                    switch (extension)
+                    {
+                        case ".jpg":
+                        case ".bmp":
+                        case ".png":
+                        case ".wdp":
+                        case ".gif":
+                        case ".tif":
+                            ChangeImageExtension(selectedFile, extension);
+                            break;
+                        default:
+                            MessageBox.Show("지원되지 않는 형식입니다.\r\n파일 확장자를 소문자로 변경해주세요.", fsetting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
+                            break;
+                    }
+                }
+            }
+        }
+
+        // 선택된 이미지로 변경
+        private void ChangeImageExtension(string filePath, string extension)
+        {
+            string destinationPath = $"image\\UI{extension}";
+
+            // 기존 이미지 파일 제거
+            DeleteExistingImageFiles();
+
+            // 이미지 확장자 및 복사
+            try
+            {
+                RegistryKeySetting.SetValue("extension", extension);
+                File.Copy(filePath, destinationPath, true);
+                MessageBox.Show("사진 변경이 완료되었습니다.", fsetting.cap);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"사진 변경 중 오류가 발생했습니다.\r\n에러 메시지: {ex.Message}", fsetting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        // 기존 이미지 파일 제거
+        private void DeleteExistingImageFiles()
+        {
+            try
+            {
+                string[] extensions = { ".jpg", ".bmp", ".png", ".wdp", ".gif", ".tif" };
+
+                foreach (string extension in extensions)
+                {
+                    string filePath = $"image\\UI{extension}";
+                    if (File.Exists(filePath))
+                    {
+                        File.Delete(filePath);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"기존 이미지 파일 제거 중 오류가 발생했습니다.\r\n에러 메시지: {ex.Message}", fsetting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        // 기본 이미지로 복원
+        private void RestoreDefaultImage()
+        {
+            try
+            {
+                File.Copy(@"image\\UI_default.png", @"image\\UI.png", true);
+                RegistryKeySetting.SetValue("extension", ".png");
+                MessageBox.Show("사진 변경이 완료되었습니다.", fsetting.cap);
+            }
+            catch (FileNotFoundException)
+            {
+                MessageBox.Show("파일을 찾을 수 없습니다!", fsetting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"오류 발생: {ex.Message}", fsetting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
         // 화면 잠그기 설정 //
         private void Locking()
         {
@@ -327,7 +353,7 @@ namespace Screen_Saver
             else
             {
 
-                string path_ui = Path.GetFullPath("Image\\UI." + RegistryKeySetting.GetValue("extension"));
+                string path_ui = Path.GetFullPath("Image\\UI" + RegistryKeySetting.GetValue("extension"));
                 FileInfo fi = new FileInfo(path_ui); // UI
                 if (fi.Exists)
                 {
@@ -341,7 +367,6 @@ namespace Screen_Saver
 
                     Window LW = new LockingWindow(timer); // 폼 종료시 타이머 멈출 수 있게 객체로 던짐
                     LW.ShowDialog();
-
                 }
                 else
                 {
@@ -370,17 +395,20 @@ namespace Screen_Saver
         //컴퓨터 종료 타이머 메서드
         private void off_timer(object sender, EventArgs e)
         {
-            
+
         }
 
         //좌표지정 메서드
-/*        private int[] off_xy()
-        {
-            return [10, 20];
-        }*/
+        /*        private int[] off_xy()
+                {
+                    return [10, 20];
+                }*/
 
         // 트레이 선언 //
+
+
         public System.Windows.Forms.NotifyIcon notify;
+
         // 트레이 세팅 //
         private void tray_setting()
         {
@@ -436,53 +464,26 @@ namespace Screen_Saver
             notify.Visible = false; // 트레이아이콘 숨기기
         }
 
+
         //핫키 세팅부(ctrl+L)// 
+        // 핫키 설정
+        private void SetupHotKey()
+        {
+            RegisterHotKey(AccessModifierKeys.Control, Key.Q, handler_HotKeyPressed);
+        }
+        // 핫키 설정
         private void handler_HotKeyPressed(object sender, HotKeyEventArgs e)
         {
             if (e.Key == Key.Q)
                 Locking();
         }
-
-        //기존 사진 파일 제거//
-        private void usingpicturedel()
+        // 핫키 등록 메서드
+        private void RegisterHotKey(AccessModifierKeys modifier, Key key, EventHandler<HotKeyEventArgs> handler)
         {
-            try
-            {
-                FileInfo fileDel = new FileInfo(@"image\\UI.jpg");
-                if (fileDel.Exists) //삭제할 파일이 있는지
-                {
-                    fileDel.Delete();
-                }
-                fileDel = new FileInfo(@"image\\UI.bmp");
-                if (fileDel.Exists) //삭제할 파일이 있는지
-                {
-                    fileDel.Delete();
-                }
-                fileDel = new FileInfo(@"image\\UI.png");
-                if (fileDel.Exists) //삭제할 파일이 있는지
-                {
-                    fileDel.Delete();
-                }
-                fileDel = new FileInfo(@"image\\UI.wdp");
-                if (fileDel.Exists) //삭제할 파일이 있는지
-                {
-                    fileDel.Delete();
-                }
-                fileDel = new FileInfo(@"image\\UI.gif");
-                if (fileDel.Exists) //삭제할 파일이 있는지
-                {
-                    fileDel.Delete();
-                }
-                fileDel = new FileInfo(@"image\\UI.tif");
-                if (fileDel.Exists) //삭제할 파일이 있는지
-                {
-                    fileDel.Delete();
-                }
-            }
-            catch
-            {
-                MessageBox.Show("기존 사진 파일 제거 과정에서 오류 발생!", fsetting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            HotKeyClass hot = new HotKeyClass();
+            hot.handler = new HotKeyHandeler(this);
+            hot.handler.RegisterHotKey(modifier, key);
+            hot.handler.HotKeyPressed += handler;
         }
 
 

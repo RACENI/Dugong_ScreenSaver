@@ -111,10 +111,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AESEncryptDecrypt.cs" />
-    <Compile Include="fsetting.cs" />
-    <Compile Include="RegistryKeySetting.cs" />
-    <Compile Include="TcpServer.cs" />
+    <Compile Include="Utilities\AESEncryptDecrypt.cs" />
+    <Compile Include="Models\fsetting.cs" />
+    <Compile Include="Utilities\RegistryKeySetting.cs" />
+    <Compile Include="Managers\TcpServer.cs" />
     <Page Include="APW.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -141,8 +141,8 @@
     <Compile Include="Configuration.xaml.cs">
       <DependentUpon>Configuration.xaml</DependentUpon>
     </Compile>
-    <Compile Include="HotKeyClass.cs" />
-    <Compile Include="InterceptKeys.cs" />
+    <Compile Include="Managers\HotKeyClass.cs" />
+    <Compile Include="Managers\InterceptKeys.cs" />
     <Compile Include="LockingSolve.xaml.cs">
       <DependentUpon>LockingSolve.xaml</DependentUpon>
     </Compile>
@@ -231,6 +231,7 @@
     <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.3.3.2\analyzers\dotnet\cs\Microsoft.NetFramework.Analyzers.dll" />
     <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.3.3.2\analyzers\dotnet\cs\Microsoft.NetFramework.CSharp.Analyzers.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
