@@ -28,11 +28,6 @@ namespace Screen_Saver
             {
                 if (MessageBox.Show("Screen Saver를 종료하시겠습니까?", fsetting.cap, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
-/*                    var a = Application.Current.Windows;
-                    for (int i = 1; i < (a.Count - 1); i++)
-                    {
-                        a[i].Close();
-                    }*/
                     lockingWindow1.Close();
                     this.Close();
                 }

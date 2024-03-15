@@ -29,13 +29,11 @@
                 <MenuItem Header="환경설정" Click="MenuItem_Click_5"/>
             </MenuItem>
         </Menu>
-        
+
         <Button Name="button" Click="Button_Click" Cursor="Hand" Margin="346,254,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="182"  Width="269" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" >
             <Button.OpacityMask>
                 <ImageBrush/>
             </Button.OpacityMask>
-
         </Button>
-        <Label Name="label1" Content="Label" HorizontalAlignment="Left" Margin="91,293,0,0" VerticalAlignment="Top" Height="25" Width="119"/>
     </Grid>
 </Window>

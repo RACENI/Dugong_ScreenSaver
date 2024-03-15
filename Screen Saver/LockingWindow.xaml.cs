@@ -47,7 +47,7 @@ namespace Screen_Saver
             if(RegistryKeySetting.GetValue("maple") != null)
             {
                 tcpServer = new TcpServer();
-                tcpServer.ThreadStart();
+                tcpServer.start();
             }
         }
 
@@ -67,9 +67,9 @@ namespace Screen_Saver
         // Alt + F4 disabled //
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            tcpServer.Stop();
             clock_timer.Stop();
             maple_timer.Stop();
-            tcpServer = null;
             // e.Cancel = true; //본 프로그램 배포시 주석 제거 요망
         }
         private void title_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)

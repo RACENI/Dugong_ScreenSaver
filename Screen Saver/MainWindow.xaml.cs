@@ -336,9 +336,6 @@ namespace Screen_Saver
                     timer.Tick += new EventHandler(maple_timer);          //이벤트 추가
                     if (RegistryKeySetting.GetValue("maple") == "is")
                     {
-                        //서버열기
-
-
                         timer.Start();                                       //타이머 시작. 종료는 timer.Stop();
                     }
 
