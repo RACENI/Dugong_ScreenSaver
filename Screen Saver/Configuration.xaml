@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Screen_Saver"
         mc:Ignorable="d"
         Icon="Icon.ico"
-        Title="듀공 화면 잠금기 : 환경설정" Height="747.5" Width="963.5" Loaded="Window_Loaded_1" ResizeMode="NoResize" >
+        Title="듀공 화면 잠금기 : 환경설정" Height="747.5" Width="963.5" ResizeMode="NoResize" >
     <Grid>
         <Canvas>
             <Image Stretch="Fill" Source="image/세팅창.png"/>

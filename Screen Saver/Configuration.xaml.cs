@@ -10,77 +10,70 @@ namespace Screen_Saver
         public Configuration()
         {
             InitializeComponent();
+            LoadRegistrySettings();
+
+        }
+
+        private void LoadRegistrySettings()
+        {
+            tray.IsChecked = RegistryKeySetting.GetValue("tray") != null;
+            clock.IsChecked = RegistryKeySetting.GetValue("clock") != null;
+            transparent.IsChecked = RegistryKeySetting.GetValue("transparent") != null;
+            maple.IsChecked = RegistryKeySetting.GetValue("maple") != null;
+        }
+
+        private void UpdateRegistrySetting(string key, bool isChecked)
+        {
+            if (isChecked)
+                RegistryKeySetting.SetValue(key, "is");
+            else
+                RegistryKeySetting.DeleteValue(key);
         }
 
         // 트레이 is //
         private void Tray_Checked(object sender, RoutedEventArgs e)
         {
-            RegistryKeySetting.SetValue("tray", "is"); // 레지스트리에 쓰기
+            UpdateRegistrySetting("tray", true);
         }
 
         // 트레이 False //
         private void Tray_Unchecked(object sender, RoutedEventArgs e)
         {
-            RegistryKeySetting.DeleteValue("tray"); // 레지스트리에 삭제
+            UpdateRegistrySetting("tray", false);
         }
 
         // 시계 is //
         private void Clock_Checked(object sender, RoutedEventArgs e)
         {
-            RegistryKeySetting.SetValue("clock", "is"); // 레지스트리에 쓰기
+            UpdateRegistrySetting("clock", true);
         }
 
         // 시계 False // 
         private void Clock_Unchecked(object sender, RoutedEventArgs e)
         {
-            RegistryKeySetting.DeleteValue("clock"); // 레지스트리에 삭제
+            UpdateRegistrySetting("clock", false);
         }
 
         private void transparent_Checked(object sender, RoutedEventArgs e)
         {
-            RegistryKeySetting.SetValue("transparent", "is"); // 레지스트리에 쓰기
+            UpdateRegistrySetting("transparent", true);
         }
 
         private void transparent_Unchecked(object sender, RoutedEventArgs e)
         {
-            RegistryKeySetting.DeleteValue("transparent"); // 레지스트리에 삭제
+            UpdateRegistrySetting("transparent", false); // 레지스트리에 삭제
         }
 
         // 메이플 is //
         private void Maple_Checked(object sender, RoutedEventArgs e)
         {
-            RegistryKeySetting.SetValue("maple", "is"); // 레지스트리에 쓰기
+            UpdateRegistrySetting("maple", true); // 레지스트리에 쓰기
         }
 
         // 메이플 False //
         private void Maple_Unchecked(object sender, RoutedEventArgs e)
         {
-            RegistryKeySetting.DeleteValue("maple"); // 레지스트리에 삭제
-        }
-
-        // 폼 로드 //
-        private void Window_Loaded_1(object sender, RoutedEventArgs e)
-        {
-
-            if (RegistryKeySetting.GetValue("tray") == null)
-                tray.IsChecked = false;
-            else
-                tray.IsChecked = true; // 트레이창 체크
-
-            if (RegistryKeySetting.GetValue("clock") == null)
-                clock.IsChecked = false;
-            else
-                clock.IsChecked = true; // 시계 체크
-
-            if (RegistryKeySetting.GetValue("transparent") == null)
-                transparent.IsChecked = false;
-            else
-                transparent.IsChecked = true; // 투명잠금화면 체크
-
-            if (RegistryKeySetting.GetValue("maple") == null)
-                maple.IsChecked = false;
-            else
-                maple.IsChecked = true; // 메이플 체크
+            UpdateRegistrySetting("maple", false); // 레지스트리에 삭제
         }
     }
 }

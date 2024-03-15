@@ -10,32 +10,18 @@ namespace Screen_Saver
     public partial class LockingSolve : Window
     {
         private AESEncryptDecrypt aes = new AESEncryptDecrypt();
-        LockingWindow lockingWindow1;
+        private LockingWindow lockingWindow;
 
         public LockingSolve(LockingWindow lockingWindow)
         {
             InitializeComponent();
 
-            lockingWindow1 = lockingWindow;
+            this.lockingWindow = lockingWindow;
         }
 
-        // 비번 확인 후 프로그램 종료 //
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string text = PPW.Password;
-
-            if (text == aes.AESDecrypt(Convert.FromBase64String(RegistryKeySetting.GetValue("PW")), aes.GetKey(), aes.GetIV()))
-            {
-                if (MessageBox.Show("Screen Saver를 종료하시겠습니까?", fsetting.cap, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                {
-                    lockingWindow1.Close();
-                    this.Close();
-                }
-            }
-            else
-            {
-                MessageBox.Show("비밀번호를 확인해주세요.", fsetting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            AttemptProgramExit();
         }
 
         // 창닫기 //
@@ -55,7 +41,33 @@ namespace Screen_Saver
         {
             if (e.Key.Equals(Key.Enter))
             {
-                Button_Click(sender, e);
+                AttemptProgramExit();
+            }
+        }
+
+       private void  AttemptProgramExit()
+        {
+            string enteredPassword = PPW.Password;
+            string storedPassword = RegistryKeySetting.GetValue("PW");
+
+            try
+            {
+                if (enteredPassword == aes.AESDecrypt(Convert.FromBase64String(storedPassword), aes.GetKey(), aes.GetIV()))
+                {
+                    if (MessageBox.Show("Screen Saver를 종료하시겠습니까?", fsetting.cap, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    {
+                        lockingWindow.Close();
+                        this.Close();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("비밀번호를 확인해주세요.", fsetting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("오류발생 : " + ex.Message);
             }
         }
     }

@@ -18,7 +18,7 @@ namespace Screen_Saver
         TcpListener tcpListener;
         private bool isRunning = true;
 
-        public void start()
+        public void Start()
         {
             tcpListener = new TcpListener(IPAddress.Parse("127.0.0.1"), 2000);
             tcpListener.Start();

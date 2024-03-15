@@ -11,7 +11,7 @@ namespace Screen_Saver
     {
         public class HotKeyHandeler : IDisposable
         {
-            Hashtable keyIDs = new Hashtable();
+            private readonly Hashtable keyIDs = new Hashtable();
             public IntPtr Handle { get; private set; }
             public event EventHandler<HotKeyEventArgs> HotKeyPressed;
             public AccessModifierKeys ModifierKeys { get; private set; }
@@ -62,15 +62,22 @@ namespace Screen_Saver
                 short hKeyID = GlobalAddAtom(atomName);
                 ModifierKeys = modifiers;
 
-                if (hKeyID != 0)
+                try
                 {
-                    if (!RegisterHotKey(Handle, hKeyID, (int)modifiers, KeyInterop.VirtualKeyFromKey(key)))
-                        throw new ArgumentException("Hotkey combination could not be registered.");
+                    if (hKeyID != 0)
+                    {
+                        if (!RegisterHotKey(Handle, hKeyID, (int)modifiers, KeyInterop.VirtualKeyFromKey(key)))
+                            throw new ArgumentException("Hotkey combination could not be registered.");
+                        else
+                            keyIDs.Add(hKeyID, hKeyID);
+                    }
                     else
-                        keyIDs.Add(hKeyID, hKeyID);
+                        throw new ArgumentException("Hotkey ID not generated!");
                 }
-                else
-                    throw new ArgumentException("Hotkey ID not generated!");
+                catch (Exception e)
+                {
+
+                }
 
             }
 

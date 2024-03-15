@@ -2,15 +2,31 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Screen_Saver"
-        mc:Ignorable="d"
         Icon="Icon.ico"
-        Title="듀공 화면 잠금기 : 비밀번호 변경" Height="745.935" Width="962.06" ResizeMode="NoResize" KeyDown="Window_KeyDown">
+        Title="듀공 화면 잠금기 : 비밀번호 변경" 
+        Height="745.935" 
+        Width="962.06" 
+        ResizeMode="NoResize"
+        KeyDown="Window_KeyDown">
     <Grid>
+        <!-- 캔버스 시작 -->
         <Canvas>
             <Image Stretch="Fill" Source="image/듀공_비밀번호_변경화면.png" Height="717" Width="956"/>
-            <Button HorizontalAlignment="Left" Height="42" VerticalAlignment="Top" Width="199" Click="Button_Click" Background="Transparent" BorderBrush="Transparent" Canvas.Left="379" Canvas.Top="613" FontFamily="NanumGothic" FontWeight="Bold" Cursor="Hand" TabIndex="4">
+            <!-- 비밀번호 변경 버튼 -->
+            <Button HorizontalAlignment="Left" 
+                    Height="42" 
+                    VerticalAlignment="Top" 
+                    Width="199" 
+                    Click="Button_Click" 
+                    Background="Transparent" 
+                    BorderBrush="Transparent" 
+                    Canvas.Left="379" 
+                    Canvas.Top="613" 
+                    FontFamily="NanumGothic" 
+                    FontWeight="Bold" 
+                    Cursor="Hand" 
+                    TabIndex="4">
                 <Button.OpacityMask>
                     <ImageBrush/>
                 </Button.OpacityMask>
@@ -19,11 +35,96 @@
                 </Button.Foreground>
             </Button>
         </Canvas>
-        <TextBox Name="APW_" HorizontalAlignment="Left" Height="36" Margin="207,383,0,0" TextWrapping="Wrap" Text="현재 비밀번호" VerticalAlignment="Top" Width="542"  Background="Transparent" BorderBrush="Transparent" FontFamily="NanumGothic" FontSize="24" TabIndex="1" GotFocus="APW__GotFocus"/>
-        <TextBox Name="NPW_" HorizontalAlignment="Left" Height="35" Margin="207,474,0,0" TextWrapping="Wrap" Text="변경할 비밀번호" VerticalAlignment="Top" Width="541" Background="Transparent" BorderBrush="Transparent" FontFamily="NanumGothic" FontSize="24" TabIndex="2" GotFocus="NPW__GotFocus"/>
-        <TextBox Name="NPW_Check" HorizontalAlignment="Left" Height="36" Margin="207,559,0,0" TextWrapping="Wrap" Text="비밀번호 확인"  VerticalAlignment="Top"  Width="542" Background="Transparent" BorderBrush="Transparent" FontFamily="NanumGothic" FontSize="24" TabIndex="3" GotFocus="NPW_Check_GotFocus" />
-        <PasswordBox Name="AAPW" HorizontalAlignment="Left" Height="36" Margin="207,383,0,0" VerticalAlignment="Top" Width="542"  Background="Transparent" BorderBrush="Transparent" FontFamily="NanumGothic" FontSize="24" Visibility="Hidden" TabIndex="1"/>
-        <PasswordBox Name="NNPW" HorizontalAlignment="Left" Height="35" Margin="207,474,0,0"  VerticalAlignment="Top" Width="541" Background="Transparent" BorderBrush="Transparent" FontFamily="NanumGothic" FontSize="24" Visibility="Hidden" TabIndex="2"/>
-        <PasswordBox Name="NNPW_Check" HorizontalAlignment="Left" Height="36" Margin="207,559,0,0"  VerticalAlignment="Top"  Width="542" Background="Transparent" BorderBrush="Transparent" FontFamily="NanumGothic" FontSize="24" Visibility="Hidden" TabIndex="3"/>
+        <!-- 캔버스 종료 -->
+
+        <!-- 현재 비밀번호 입력란 -->
+        <TextBox Name="APW_" 
+                 HorizontalAlignment="Left" 
+                 Height="36" 
+                 Margin="207,383,0,0" 
+                 TextWrapping="Wrap" 
+                 Text="현재 비밀번호" 
+                 VerticalAlignment="Top" 
+                 Width="542"  
+                 Background="Transparent" 
+                 BorderBrush="Transparent" 
+                 FontFamily="NanumGothic" 
+                 FontSize="24" 
+                 TabIndex="1" 
+                 GotFocus="APW__GotFocus"/>
+
+        <!-- 변경할 비밀번호 입력란 -->
+        <TextBox Name="NPW_" 
+                 HorizontalAlignment="Left" 
+                 Height="35" 
+                 Margin="207,474,0,0" 
+                 TextWrapping="Wrap" 
+                 Text="변경할 비밀번호" 
+                 VerticalAlignment="Top" 
+                 Width="541" 
+                 Background="Transparent" 
+                 BorderBrush="Transparent" 
+                 FontFamily="NanumGothic" 
+                 FontSize="24" 
+                 TabIndex="2" 
+                 GotFocus="NPW__GotFocus"/>
+
+        <!-- 변경할 비밀번호 확인 입력란 -->
+        <TextBox Name="NPW_Check" 
+                 HorizontalAlignment="Left" 
+                 Height="36" 
+                 Margin="207,559,0,0" 
+                 TextWrapping="Wrap" 
+                 Text="비밀번호 확인"  
+                 VerticalAlignment="Top"  
+                 Width="542" 
+                 Background="Transparent" 
+                 BorderBrush="Transparent" 
+                 FontFamily="NanumGothic" 
+                 FontSize="24" 
+                 TabIndex="3" 
+                 GotFocus="NPW_Check_GotFocus" />
+
+        <!-- 비밀번호 입력란 (비밀번호 입력시) -->
+        <PasswordBox Name="AAPW" 
+                     HorizontalAlignment="Left" 
+                     Height="36" 
+                     Margin="207,383,0,0" 
+                     VerticalAlignment="Top" 
+                     Width="542"  
+                     Background="Transparent" 
+                     BorderBrush="Transparent" 
+                     FontFamily="NanumGothic" 
+                     FontSize="24" 
+                     Visibility="Hidden" 
+                     TabIndex="1"/>
+
+        <!-- 변경할 비밀번호 입력란 (비밀번호 입력시) -->
+        <PasswordBox Name="NNPW" 
+                     HorizontalAlignment="Left" 
+                     Height="35" 
+                     Margin="207,474,0,0"  
+                     VerticalAlignment="Top" 
+                     Width="541" 
+                     Background="Transparent" 
+                     BorderBrush="Transparent" 
+                     FontFamily="NanumGothic" 
+                     FontSize="24" 
+                     Visibility="Hidden" 
+                     TabIndex="2"/>
+
+        <!-- 변경할 비밀번호 확인 입력란 (비밀번호 입력시) -->
+        <PasswordBox Name="NNPW_Check" 
+                     HorizontalAlignment="Left" 
+                     Height="36" 
+                     Margin="207,559,0,0"  
+                     VerticalAlignment="Top"  
+                     Width="542" 
+                     Background="Transparent" 
+                     BorderBrush="Transparent" 
+                     FontFamily="NanumGothic" 
+                     FontSize="24" 
+                     Visibility="Hidden" 
+                     TabIndex="3"/>
     </Grid>
 </Window>

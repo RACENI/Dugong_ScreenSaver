@@ -19,22 +19,24 @@ namespace Screen_Saver
         // 비밀번호 변경 //
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string text = AAPW.Password;
-            string After = NNPW.Password;
-            string After_Check = NNPW_Check.Password;
+            string currentPassword = AAPW.Password;
+            string newPassword = NNPW.Password;
+            string newPasswordCheck = NNPW_Check.Password;
 
 
-            if (After.Length >= 3 && After.Length <= 30)
+            if (newPassword.Length >= 3 && newPassword.Length <= 30)
             {
-                if (aes.AESDecrypt(Convert.FromBase64String(RegistryKeySetting.GetValue("PW")), aes.GetKey(), aes.GetIV()) == text)
+                string decryptedPassword = aes.AESDecrypt(Convert.FromBase64String(RegistryKeySetting.GetValue("PW")), aes.GetKey(), aes.GetIV());
+
+                if (decryptedPassword == currentPassword)
                 {
-                    if (After == After_Check)
+                    if (newPassword == newPasswordCheck)
                     {
                         aes.SetKey();
                         aes.SetIV();
-                        RegistryKeySetting.SetValue("PW", aes.AESEncrypt(After, aes.GetKey(), aes.GetIV()));
+                        RegistryKeySetting.SetValue("PW", aes.AESEncrypt(newPassword, aes.GetKey(), aes.GetIV()));
                         MessageBox.Show("비밀번호 변경이 완료되었습니다." +
-                            "\r\n\r\n변경된 비밀변호 : " + After, fsetting.cap, MessageBoxButton.OK);
+                            "\r\n\r\n변경된 비밀변호 : " + newPassword, fsetting.cap, MessageBoxButton.OK);
                         Close();
                     }
                     else
