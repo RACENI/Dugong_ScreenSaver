@@ -3,8 +3,10 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
+using System.Net.Sockets;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 using static Screen_Saver.HotKeyClass;
 
 namespace Screen_Saver
@@ -14,6 +16,7 @@ namespace Screen_Saver
         public MainWindow()
         {
             InitializeComponent();
+
 
             width = window.Width;
             height = window.Height;
@@ -30,21 +33,6 @@ namespace Screen_Saver
         }
 
 
-
-        private void timer_Tick(object sender, EventArgs e)
-        {
-            bool mapleon = false;
-            Process[] ProcessList = Process.GetProcessesByName("MapleStory");
-            if (mapleon == false && ProcessList.Length > 0)
-            {
-                mapleon = true;
-            }
-            else if (mapleon == true && ProcessList.Length < 1)
-            {
-
-                //Process.Start("shutdown.exe", "-s -t 5");
-            }
-        }
 
 
         // 화면 잠그기 버튼 //
@@ -343,8 +331,20 @@ namespace Screen_Saver
                 FileInfo fi = new FileInfo(path_ui); // UI
                 if (fi.Exists)
                 {
-                    Window LW = new LockingWindow(); // 윈도우 불러오는 부분이 장애가 생김.
+                    DispatcherTimer timer = new DispatcherTimer();    //객체생성
+                    timer.Interval = TimeSpan.FromMilliseconds(100);    //시간간격 설정
+                    timer.Tick += new EventHandler(maple_timer);          //이벤트 추가
+                    if (RegistryKeySetting.GetValue("maple") == "is")
+                    {
+                        //서버열기
+
+
+                        timer.Start();                                       //타이머 시작. 종료는 timer.Stop();
+                    }
+
+                    Window LW = new LockingWindow(timer); // 폼 종료시 타이머 멈출 수 있게 객체로 던짐
                     LW.ShowDialog();
+
                 }
                 else
                 {
@@ -353,7 +353,34 @@ namespace Screen_Saver
             }
         }
 
+        //게임 확인 타이머 메서드
+        private void maple_timer(object sender, EventArgs e)
+        {
 
+            bool mapleon = false;
+            Process[] ProcessList = Process.GetProcessesByName("MapleStory");
+            if (mapleon == false && ProcessList.Length > 0)
+            {
+                mapleon = true;
+            }
+            else if (mapleon == true && ProcessList.Length < 1)
+            {
+                //Process.Start("shutdown.exe", "-s -t 5");
+
+            }
+        }
+
+        //컴퓨터 종료 타이머 메서드
+        private void off_timer(object sender, EventArgs e)
+        {
+            
+        }
+
+        //좌표지정 메서드
+/*        private int[] off_xy()
+        {
+            return [10, 20];
+        }*/
 
         // 트레이 선언 //
         public System.Windows.Forms.NotifyIcon notify;

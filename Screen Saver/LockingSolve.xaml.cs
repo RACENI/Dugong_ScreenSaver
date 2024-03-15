@@ -10,10 +10,13 @@ namespace Screen_Saver
     public partial class LockingSolve : Window
     {
         private AESEncryptDecrypt aes = new AESEncryptDecrypt();
+        LockingWindow lockingWindow1;
 
-        public LockingSolve()
+        public LockingSolve(LockingWindow lockingWindow)
         {
             InitializeComponent();
+
+            lockingWindow1 = lockingWindow;
         }
 
         // 비번 확인 후 프로그램 종료 //
@@ -25,11 +28,13 @@ namespace Screen_Saver
             {
                 if (MessageBox.Show("Screen Saver를 종료하시겠습니까?", fsetting.cap, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
-                    var a = Application.Current.Windows;
+/*                    var a = Application.Current.Windows;
                     for (int i = 1; i < (a.Count - 1); i++)
                     {
                         a[i].Close();
-                    }
+                    }*/
+                    lockingWindow1.Close();
+                    this.Close();
                 }
             }
             else
