@@ -111,11 +111,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Managers\ScreenSaverManager.cs" />
-    <Compile Include="Managers\TrayManager.cs" />
     <Compile Include="Utilities\AESEncryptDecrypt.cs" />
     <Compile Include="Models\fsetting.cs" />
-    <Compile Include="Utilities\ExceptionLogger.cs" />
     <Compile Include="Utilities\RegistryKeySetting.cs" />
     <Compile Include="Managers\TcpServer.cs" />
     <Page Include="APW.xaml">
@@ -144,8 +141,8 @@
     <Compile Include="Configuration.xaml.cs">
       <DependentUpon>Configuration.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\HotKeyClass.cs" />
-    <Compile Include="Utilities\InterceptKeys.cs" />
+    <Compile Include="Managers\HotKeyClass.cs" />
+    <Compile Include="Managers\InterceptKeys.cs" />
     <Compile Include="LockingSolve.xaml.cs">
       <DependentUpon>LockingSolve.xaml</DependentUpon>
     </Compile>

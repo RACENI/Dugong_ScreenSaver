@@ -54,7 +54,7 @@ namespace Screen_Saver
             {
                 if (enteredPassword == aes.AESDecrypt(Convert.FromBase64String(storedPassword), aes.GetKey(), aes.GetIV()))
                 {
-                    if (MessageBox.Show("잠금해제 하시겠습니까?", fsetting.cap, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    if (MessageBox.Show("Screen Saver를 종료하시겠습니까?", fsetting.cap, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                     {
                         lockingWindow.Close();
                         this.Close();
