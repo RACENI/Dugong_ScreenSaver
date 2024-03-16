@@ -1,4 +1,6 @@
 ﻿using Microsoft.Win32;
+using Screen_Saver.Utilities;
+using System;
 
 namespace Screen_Saver
 {
@@ -12,10 +14,10 @@ namespace Screen_Saver
                 string value = programkey.GetValue(key, false).ToString();
                 return value == "False" ? null : value;
             }
-            catch
+            catch (Exception ex)
             {
+                ExceptionLogger.LogException(ex);
                 return "error";
-                throw;
             }
             finally
             {
@@ -26,15 +28,35 @@ namespace Screen_Saver
         public static void SetValue(string key1, string key2)
         {
             RegistryKey programkey = Registry.LocalMachine.CreateSubKey("SOFTWARE\\SARACEN\\DugongScreen");
-            programkey.SetValue(key1, key2);
-            programkey.Close();
+            try
+            {
+                programkey.SetValue(key1, key2);
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.LogException(ex);
+            }
+            finally
+            {
+                programkey.Close();
+            }
         }
 
         public static void DeleteValue(string key)
         {
             RegistryKey programkey = Registry.LocalMachine.CreateSubKey("SOFTWARE\\SARACEN\\DugongScreen");
-            programkey.DeleteValue(key, false);
-            programkey.Close();
+            try
+            {
+                programkey.DeleteValue(key, false);
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.LogException(ex);
+            }
+            finally
+            {
+                programkey.Close();
+            }
         }
     }
 }

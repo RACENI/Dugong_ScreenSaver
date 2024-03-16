@@ -11,12 +11,14 @@ using static Screen_Saver.HotKeyClass;
 using System.Windows.Input;
 using System.Diagnostics;
 using System.Net;
+using Screen_Saver.Utilities;
 
 
 namespace Screen_Saver.Managers
 {
     internal class ScreenSaverManager
     {
+        ExceptionLogger ExceptionLogger = new ExceptionLogger();
 
         #region 잠금메서드
         public void LockScreen()
@@ -62,6 +64,7 @@ namespace Screen_Saver.Managers
             }
             catch (Exception ex)
             {
+                ExceptionLogger.LogException(ex);
                 return false;
             }
         }
@@ -71,11 +74,18 @@ namespace Screen_Saver.Managers
         //핫키 세팅 
         public void windowHotKey(Window window, AccessModifierKeys keyA, Key keyB)
         {
-            HotKeyClass hot = new HotKeyClass();
+            try
+            {
+                HotKeyClass hot = new HotKeyClass();
 
-            hot.handler = new HotKeyHandeler(window);
-            hot.handler.RegisterHotKey(keyA, keyB);
-            hot.handler.HotKeyPressed += new EventHandler<HotKeyEventArgs>(handler_HotKeyPressed);
+                hot.handler = new HotKeyHandeler(window);
+                hot.handler.RegisterHotKey(keyA, keyB);
+                hot.handler.HotKeyPressed += new EventHandler<HotKeyEventArgs>(handler_HotKeyPressed);
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogger.LogException(ex);
+            }
         }
 
         // 핫키 이벤트핸들러
@@ -107,6 +117,7 @@ namespace Screen_Saver.Managers
             }
             catch (Exception ex)
             {
+                ExceptionLogger.LogException(ex);
                 return 3;
             }
         }
@@ -192,6 +203,7 @@ namespace Screen_Saver.Managers
                 }
                 catch (Exception ex)
                 {
+                    ExceptionLogger.LogException(ex);
                     return 3;
                 }
             }
@@ -220,6 +232,7 @@ namespace Screen_Saver.Managers
             }
             catch (Exception ex)
             {
+                ExceptionLogger.LogException(ex);
                 return false;
             }
         }
@@ -233,12 +246,14 @@ namespace Screen_Saver.Managers
                 RegistryKeySetting.SetValue("extension", ".png");
                 return 1;
             }
-            catch (FileNotFoundException)
+            catch (FileNotFoundException ex)
             {
+                ExceptionLogger.LogException(ex);
                 return 5;
             }
             catch (Exception ex)
             {
+                ExceptionLogger.LogException(ex);
                 return 0;
             }
         }

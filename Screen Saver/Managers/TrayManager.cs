@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Screen_Saver.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,12 +28,13 @@ namespace Screen_Saver.Managers
                 window.Hide();
                 return 1;
             }
-            catch
+            catch (Exception ex)
             {
+                ExceptionLogger.LogException(ex);
                 return 2;
             }
         }
-        
+
 
         // 트레이 세팅 //
         private void tray_setting()
@@ -83,7 +85,10 @@ namespace Screen_Saver.Managers
                     notify.Visible = false;   // 트레이아이콘 숨기기
                 };
             }
-            catch (Exception ex) { }
+            catch (Exception ex)
+            {
+                ExceptionLogger.LogException(ex);
+            }
         }
         // 트레이 더블클릭 //
         private void Notify_DoubleClick(object sender, EventArgs e)

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using Screen_Saver.Managers;
+using Screen_Saver.Utilities;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -55,7 +56,7 @@ namespace Screen_Saver
         }
         #endregion
 
-        
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             ScreenSaverManager.LockScreen();
@@ -142,8 +143,9 @@ namespace Screen_Saver
                 {
                     Process.Start(fsetting.manualURL);
                 }
-                catch
+                catch (Exception ex)
                 {
+                    ExceptionLogger.LogException(ex);
                     MessageBox.Show("인터넷 연결 상태를 확인하십시오.", fsetting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }

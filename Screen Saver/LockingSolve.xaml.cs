@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Screen_Saver.Utilities;
+using System;
 using System.Windows;
 using System.Windows.Input;
 
@@ -45,7 +46,7 @@ namespace Screen_Saver
             }
         }
 
-       private void  AttemptProgramExit()
+        private void AttemptProgramExit()
         {
             string enteredPassword = PPW.Password;
             string storedPassword = RegistryKeySetting.GetValue("PW");
@@ -67,7 +68,8 @@ namespace Screen_Saver
             }
             catch (Exception ex)
             {
-                MessageBox.Show("오류발생 : " + ex.Message);
+                ExceptionLogger.LogException(ex);
+                MessageBox.Show("알수없는 오류가 발생하였습니다.", fsetting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
