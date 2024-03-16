@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Screen_Saver"
         mc:Ignorable="d"
-    Name="window" Title="듀공 화면 잠금기" Height="744.506" Width="968.967" Loaded="Window_Loaded" SizeChanged="Window_SizeChanged" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="443" MinHeight="373">
+    Name="window" Title="듀공 화면 잠금기" Height="744.506" Width="968.967" SizeChanged="Window_SizeChanged" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="443" MinHeight="373">
     <Grid Name="grid">
 
         <Image Name="image" Stretch="Fill" Source="image/메인창.png" HorizontalAlignment="Left" VerticalAlignment="Top" Width="961" Height="714" />
