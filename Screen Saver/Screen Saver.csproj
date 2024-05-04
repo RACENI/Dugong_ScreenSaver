@@ -34,7 +34,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>2.0.0.%2a</ApplicationVersion>
+    <ApplicationVersion>2.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -111,8 +111,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Managers\HotKeyManager.cs" />
+    <Compile Include="Managers\ImageManager.cs" />
+    <Compile Include="Managers\LockManager.cs" />
     <Compile Include="Managers\ScreenSaverManager.cs" />
     <Compile Include="Managers\TrayManager.cs" />
+    <Compile Include="Managers\VersionManager.cs" />
     <Compile Include="Utilities\AESEncryptDecrypt.cs" />
     <Compile Include="Models\fsetting.cs" />
     <Compile Include="Utilities\ExceptionLogger.cs" />

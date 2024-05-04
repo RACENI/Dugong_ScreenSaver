@@ -18,7 +18,7 @@ namespace Screen_Saver.Utilities
                 string logFileName = $"ExceptionLog_{DateTime.Now:yyyyMMdd_HHmmss}.txt";
 
                 // 프로그램 실행 파일이 있는 디렉토리에 로그 파일 경로 생성
-                string logFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, logFileName);
+                string logFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory + "/exception", logFileName);
 
                 // 로그 파일에 예외 정보 기록
                 using (StreamWriter writer = new StreamWriter(logFilePath, true))

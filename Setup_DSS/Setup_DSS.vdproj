@@ -15,62 +15,44 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_5E80292A12864E2C8AA3504C3BCFB24D"
+        "MsmKey" = "8:_1964D9645EC1480C8943A78041F4E2A0"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_7B3E3C184A864E91AEDADE6EFB7DA50F"
+        "MsmKey" = "8:_6B1DF291475F42AAAB8A65BBD7951676"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_7E12F3494A1549B2AA3B0DB40467FFE3"
+        "MsmKey" = "8:_9996858F0BA47F45B186AD76D09995F0"
+        "OwnerKey" = "8:_E781E6F6C01D44308F343EB874698AF1"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BE38410CBAC24A42B01E77E610E2CAB3"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_857A35D5516B4F06920604E9172C424A"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_9E847A0AA1D11C49DEF055F7121DCA55"
-        "OwnerKey" = "8:_5E80292A12864E2C8AA3504C3BCFB24D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_CDC72DA76DE144B7B678C5722B90CBC5"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E554C59AE7BF4E2C8843EC075B4C15C8"
+        "MsmKey" = "8:_E781E6F6C01D44308F343EB874698AF1"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_7E12F3494A1549B2AA3B0DB40467FFE3"
+        "OwnerKey" = "8:_9996858F0BA47F45B186AD76D09995F0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_5E80292A12864E2C8AA3504C3BCFB24D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_9E847A0AA1D11C49DEF055F7121DCA55"
+        "OwnerKey" = "8:_E781E6F6C01D44308F343EB874698AF1"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -168,23 +150,12 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5E80292A12864E2C8AA3504C3BCFB24D"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1964D9645EC1480C8943A78041F4E2A0"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:듀공 화면 잠금기, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_5E80292A12864E2C8AA3504C3BCFB24D"
-                    {
-                    "Name" = "8:듀공 화면 잠금기.exe"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:..\\Screen Saver\\bin\\Debug\\듀공 화면 잠금기.exe"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\Screen Saver\\bin\\Release\\Image\\UI_default.png"
+            "TargetName" = "8:UI_default.png"
             "Tag" = "8:"
-            "Folder" = "8:_51FC069FDC824F119A3281348738AC3D"
+            "Folder" = "8:_59BFBE40CC7D45F39EF0EDF119891B61"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -199,9 +170,9 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7B3E3C184A864E91AEDADE6EFB7DA50F"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6B1DF291475F42AAAB8A65BBD7951676"
             {
-            "SourcePath" = "8:..\\Screen Saver\\bin\\Debug\\Image\\Icon.ico"
+            "SourcePath" = "8:..\\Screen Saver\\bin\\Release\\Image\\Icon.ico"
             "TargetName" = "8:Icon.ico"
             "Tag" = "8:"
             "Folder" = "8:_59BFBE40CC7D45F39EF0EDF119891B61"
@@ -219,71 +190,20 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7E12F3494A1549B2AA3B0DB40467FFE3"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:WindowsInput, Version=1.0.4.0, Culture=neutral, PublicKeyToken=9b287f7dc5073cad, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_7E12F3494A1549B2AA3B0DB40467FFE3"
-                    {
-                    "Name" = "8:WindowsInput.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:..\\Screen Saver\\bin\\Debug\\WindowsInput.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_51FC069FDC824F119A3281348738AC3D"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_857A35D5516B4F06920604E9172C424A"
-            {
-            "SourcePath" = "8:..\\Screen Saver\\bin\\Debug\\Image\\UI.png"
-            "TargetName" = "8:UI.png"
-            "Tag" = "8:"
-            "Folder" = "8:_59BFBE40CC7D45F39EF0EDF119891B61"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9E847A0AA1D11C49DEF055F7121DCA55"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9996858F0BA47F45B186AD76D09995F0"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:WpfAnimatedGif, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9e7cd3b544a090dc, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_9E847A0AA1D11C49DEF055F7121DCA55"
+                    "_9996858F0BA47F45B186AD76D09995F0"
                     {
-                    "Name" = "8:WpfAnimatedGif.DLL"
+                    "Name" = "8:WpfAnimatedGif.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:WpfAnimatedGif.DLL"
+            "SourcePath" = "8:WpfAnimatedGif.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_51FC069FDC824F119A3281348738AC3D"
@@ -301,12 +221,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CDC72DA76DE144B7B678C5722B90CBC5"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BE38410CBAC24A42B01E77E610E2CAB3"
             {
-            "SourcePath" = "8:..\\Screen Saver\\bin\\Debug\\icon.ico"
-            "TargetName" = "8:icon.ico"
+            "SourcePath" = "8:..\\Screen Saver\\bin\\Release\\Image\\UI.png"
+            "TargetName" = "8:UI.png"
             "Tag" = "8:"
-            "Folder" = "8:_51FC069FDC824F119A3281348738AC3D"
+            "Folder" = "8:_59BFBE40CC7D45F39EF0EDF119891B61"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -321,12 +241,23 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E554C59AE7BF4E2C8843EC075B4C15C8"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E781E6F6C01D44308F343EB874698AF1"
             {
-            "SourcePath" = "8:..\\Screen Saver\\bin\\Debug\\Image\\UI_default.png"
-            "TargetName" = "8:UI_default.png"
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:듀공 화면 잠금기, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_E781E6F6C01D44308F343EB874698AF1"
+                    {
+                    "Name" = "8:듀공 화면 잠금기.exe"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\Screen Saver\\bin\\Release\\듀공 화면 잠금기.exe"
+            "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_59BFBE40CC7D45F39EF0EDF119891B61"
+            "Folder" = "8:_51FC069FDC824F119A3281348738AC3D"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -408,15 +339,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:듀공 화면 잠금기"
-        "ProductCode" = "8:{BE9AACDC-502B-4C53-AB2F-8E6641D58331}"
-        "PackageCode" = "8:{96188A49-2ECB-48B6-911C-F885E3157B97}"
+        "ProductCode" = "8:{ED6F79B9-933A-45F1-A418-A411CEF45124}"
+        "PackageCode" = "8:{D263F535-3135-4DD1-A221-99F058520CB7}"
         "UpgradeCode" = "8:{5A5381B8-2634-44F6-87CB-1CCF6269AEFF}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:2.0"
+        "ProductVersion" = "8:2.1"
         "Manufacturer" = "8:SARACEN"
         "ARPHELPTELEPHONE" = "8:saracen_dev@naver.com"
         "ARPHELPLINK" = "8:https://saracenletter.tistory.com/"
@@ -529,7 +460,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_328230227FD84FB09491282702132763"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_057084831AF046E989097DE0A5229A75"
             {
             "Name" = "8:듀공 화면 잠금기.exe"
             "Arguments" = "8:"
@@ -537,13 +468,13 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_5E80292A12864E2C8AA3504C3BCFB24D"
+            "Target" = "8:_E781E6F6C01D44308F343EB874698AF1"
             "Folder" = "8:_CED7B255707847089340B9768589915E"
             "WorkingFolder" = "8:_51FC069FDC824F119A3281348738AC3D"
-            "Icon" = "8:_CDC72DA76DE144B7B678C5722B90CBC5"
+            "Icon" = "8:_6B1DF291475F42AAAB8A65BBD7951676"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_9B8CA6586EEB474D891D6B6D844A3EF0"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_ABD9DEE2357F41148AA9F145D0F84108"
             {
             "Name" = "8:듀공 화면 잠금기.exe"
             "Arguments" = "8:"
@@ -551,10 +482,10 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_5E80292A12864E2C8AA3504C3BCFB24D"
+            "Target" = "8:_E781E6F6C01D44308F343EB874698AF1"
             "Folder" = "8:_89B6AFDE663F4EACBF6B7CCCB2B0F8CD"
             "WorkingFolder" = "8:_51FC069FDC824F119A3281348738AC3D"
-            "Icon" = "8:_CDC72DA76DE144B7B678C5722B90CBC5"
+            "Icon" = "8:_6B1DF291475F42AAAB8A65BBD7951676"
             "Feature" = "8:"
             }
         }
@@ -570,7 +501,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_3117C02C141E49B4A27970BECC3C673E"
                     {
                     "Sequence" = "3:100"
-                    "DisplayName" = "8:Welcome"
+                    "DisplayName" = "8:환영"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdAdminWelcomeDlg.wid"
@@ -618,7 +549,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_CCCDD98F45D8406F895F69DC077D6A19"
                     {
                     "Sequence" = "3:300"
-                    "DisplayName" = "8:Confirm Installation"
+                    "DisplayName" = "8:설치 확인"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdAdminConfirmDlg.wid"
@@ -640,7 +571,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_D7F6A19356184AFB8911DEFC28AF2135"
                     {
                     "Sequence" = "3:200"
-                    "DisplayName" = "8:Installation Folder"
+                    "DisplayName" = "8:설치 폴더"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdAdminFolderDlg.wid"
@@ -671,7 +602,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_FB7B561CC9A14295AE7186955716505D"
                     {
                     "Sequence" = "3:100"
-                    "DisplayName" = "8:Finished"
+                    "DisplayName" = "8:마침"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdFinishedDlg.wid"
@@ -715,7 +646,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_2FCF9AD00EAA44A1BF837C74F8ABFDA7"
                     {
                     "Sequence" = "3:100"
-                    "DisplayName" = "8:Progress"
+                    "DisplayName" = "8:진행률"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdAdminProgressDlg.wid"
@@ -759,7 +690,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_DED681F90CBA4CA2875463220146580C"
                     {
                     "Sequence" = "3:100"
-                    "DisplayName" = "8:Welcome"
+                    "DisplayName" = "8:환영"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdWelcomeDlg.wid"
@@ -807,7 +738,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_F82F00C9C97745A79EEE27BAFD308950"
                     {
                     "Sequence" = "3:300"
-                    "DisplayName" = "8:Confirm Installation"
+                    "DisplayName" = "8:설치 확인"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdConfirmDlg.wid"
@@ -829,7 +760,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_FCC5E0D10D084C76B9A04DB2AA9604C6"
                     {
                     "Sequence" = "3:200"
-                    "DisplayName" = "8:Installation Folder"
+                    "DisplayName" = "8:설치 폴더"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdFolderDlg.wid"
@@ -873,7 +804,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_45760EE986154869990F0C6E72B0343B"
                     {
                     "Sequence" = "3:100"
-                    "DisplayName" = "8:Finished"
+                    "DisplayName" = "8:마침"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdAdminFinishedDlg.wid"
@@ -910,7 +841,7 @@
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_C29BCACF170640998AB09723958DF5CB"
                     {
                     "Sequence" = "3:100"
-                    "DisplayName" = "8:Progress"
+                    "DisplayName" = "8:진행률"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
                     "SourcePath" = "8:<VsdDialogDir>\\VsdProgressDlg.wid"

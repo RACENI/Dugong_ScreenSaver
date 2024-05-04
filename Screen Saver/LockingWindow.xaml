@@ -15,6 +15,6 @@
         </Grid.Background>
         <Image x:Name="image"/>
         <Button Click="Button_Click" Background="Transparent" BorderBrush="Transparent" Foreground="Transparent" OpacityMask="Transparent"/>
-        <Label Name="clock" Content="Clock" FontSize="72" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="White"/>
+        <Label Name="clock" Content="" FontSize="72" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="White"/>
     </Grid>
 </Window>

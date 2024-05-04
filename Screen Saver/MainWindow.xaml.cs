@@ -30,9 +30,10 @@ namespace Screen_Saver
             //객체 초기화
             ScreenSaverManager = new ScreenSaverManager();
             TrayManager = new TrayManager(this);
+            HotKeyManager hotKeyManager = new HotKeyManager();
 
             //단축키 등록
-            ScreenSaverManager.windowHotKey(this, AccessModifierKeys.Control, Key.Q);
+            hotKeyManager.CreatHotKey(this, AccessModifierKeys.Control, Key.Q);
 
             //트레이 체크
             if (RegistryKeySetting.GetValue("tray") == "is")
@@ -59,41 +60,71 @@ namespace Screen_Saver
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            ScreenSaverManager.LockScreen();
+            LockManager lockManager = new LockManager();
+            switch(lockManager.LockScreen())
+            {
+                case LockManager.LockFlag.PASSWORD_ERROR:
+                    MessageBox.Show("비밀번호를 설정해주십시오.", fsetting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
+                    break;
+            }
         }
 
         #region MenuItem Click Method
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("기본 이미지로 변경하시겠습니까?\r\n※아니오를 선택하면 원하는 사진을 고를 수 있는 창이 나옵니다.", fsetting.cap, MessageBoxButton.YesNoCancel);
-            int checkReImage = ScreenSaverManager.RestoreImage(result);
-            switch (checkReImage)
+            ImageManager imageManager = new ImageManager();
+            ImageManager.ImageFlag imageFlag = ImageManager.ImageFlag.ERROR;
+
+            MessageBoxResult messageResult = MessageBox.Show("기본 이미지로 변경하시겠습니까?\r\n※아니오를 선택하면 원하는 사진을 고를 수 있는 창이 나옵니다.", fsetting.cap, MessageBoxButton.YesNoCancel);
+            
+            if (messageResult == MessageBoxResult.Yes)
+                imageFlag = imageManager.SetDefaultImage();
+            else if (messageResult == MessageBoxResult.No)
             {
-                case 0:
+                OpenFileDialog openDialog = new OpenFileDialog();
+                openDialog.Filter = "사진 파일 (*.jpg, *.bmp, *.png, *wdp, *gif, *tif) | *.jpg; *.bmp; *.png; *.wdp; *.gif; *.tif;";
+
+                if (openDialog.ShowDialog() == true)
+                {
+                    imageFlag = imageManager.OpenImageFileDialog(openDialog);
+                }
+            }
+            else if (messageResult == MessageBoxResult.Cancel)
+                return;
+
+
+            switch (imageFlag)
+            {
+                case ImageManager.ImageFlag.ERROR:
                     MessageBox.Show("알 수 없는 오류.", fsetting.cap);
                     break;
-                case 1:
+                case ImageManager.ImageFlag.COMPLETE:
                     MessageBox.Show("사진 변경이 완료되었습니다.", fsetting.cap);
                     break;
-                case 2:
+                case ImageManager.ImageFlag.FORMAT_ERROR:
                     MessageBox.Show("지원되지 않는 형식입니다.\r\n파일 확장자를 소문자로 변경해주세요.", fsetting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
                     break;
-                case 3:
+                case ImageManager.ImageFlag.CHANGE_ERROR:
                     MessageBox.Show($"사진 변경 중 오류가 발생했습니다.", fsetting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
                     break;
-                case 4:
+                case ImageManager.ImageFlag.DELETE_ERROR:
                     MessageBox.Show($"기존 이미지 파일 제거 중 오류가 발생했습니다.", fsetting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
-                    break;
-                //기본 이미지 복원 메시지
-                case 5:
-                    MessageBox.Show("파일을 찾을 수 없습니다!", fsetting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
                     break;
             }
         }
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
-            ScreenSaverManager.OpenPasswordSettiong();
+            if (RegistryKeySetting.GetValue("PW") == null)
+            {
+                Window NPW = new NPW();
+                NPW.ShowDialog();
+            }
+            else
+            {
+                Window APW = new APW();
+                APW.ShowDialog();
+            }
         }
 
         // 제작자
@@ -111,21 +142,21 @@ namespace Screen_Saver
         // 버전 체크
         private void MenuItem_Click_3(object sender, RoutedEventArgs e)
         {
-            int CheckVerResult = ScreenSaverManager.CheckVersion();
+            VersionManager versionManager = new VersionManager();
 
-            switch (CheckVerResult)
+            switch (versionManager.VersionChecker())
             {
-                case 1:
+                case VersionManager.CheckFlag.NEW:
                     MessageBox.Show("최신 버전 입니다.", fsetting.cap);
                     break;
 
-                case 2:
+                case VersionManager.CheckFlag.OLD:
                     if (MessageBox.Show("구 버전 입니다.\r\n\r\n확인을 누르면 다운로드 페이지로 이동합니다.", fsetting.cap, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                     {
                         Process.Start(fsetting.downloadURL);
                     }
                     break;
-                case 3:
+                case VersionManager.CheckFlag.ERROR:
                     MessageBox.Show("인터넷 연결 상태를 확인하십시오.", fsetting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
                     break;
                 default:
@@ -163,12 +194,18 @@ namespace Screen_Saver
         {
             if (MessageBox.Show("비밀번호를 초기화 하시겠습니까?\r\n비밀번호와 관련된 모든 정보는 삭제됩니다.", fsetting.cap, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
-
-                bool resetResult = ScreenSaverManager.resetPassword();
-                if (resetResult)
+                try
+                {
+                    RegistryKeySetting.DeleteValue("PW");
+                    RegistryKeySetting.DeleteValue("ddkl");
+                    RegistryKeySetting.DeleteValue("dgkah");
                     MessageBox.Show("비밀번호 초기화 완료!", fsetting.cap);
-                else
+                }
+                catch (Exception ex)
+                {
                     MessageBox.Show("오류가 발생했습니다!", fsetting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
+                    ExceptionLogger.LogException(ex);
+                }
             }
         }
         #endregion

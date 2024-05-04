@@ -13,7 +13,7 @@ namespace Screen_Saver
     {
         private DispatcherTimer clockTimer = new DispatcherTimer();
         private DispatcherTimer mapleTimer;
-        private TcpServer tcpServer;
+        //private TcpServer tcpServer;
 
         public LockingWindow(DispatcherTimer mapleTimer)
         {
@@ -23,7 +23,7 @@ namespace Screen_Saver
 
             InitializeClock();
             InitializeImage();
-            InitializeTcpServer();
+            //InitializeTcpServer();
         }
 
 
@@ -39,7 +39,7 @@ namespace Screen_Saver
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            tcpServer?.Stop();
+            //tcpServer?.Stop();
             clockTimer?.Stop();
             mapleTimer?.Stop();
         }
@@ -81,11 +81,11 @@ namespace Screen_Saver
 
         private void InitializeTcpServer()
         {
-            if (RegistryKeySetting.GetValue("maple") != null)
+/*            if (RegistryKeySetting.GetValue("maple") != null)
             {
                 tcpServer = new TcpServer();
                 tcpServer.Start();
-            }
+            }*/
         }
 
         // 이미지를 불러오는 부분 //
@@ -96,32 +96,33 @@ namespace Screen_Saver
                 string extension = RegistryKeySetting.GetValue("extension");
                 string path = Path.GetFullPath($"Image\\UI{extension}");
 
-                Stream imageStreamSource = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
-
-
-                switch (extension)
+                using (new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
-                    case ".jpg":
-                    case ".bmp":
-                    case ".png":
-                    case ".wdp":
-                    case ".tif":
-                        BitmapDecoder decoder = BitmapDecoder.Create(new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read), BitmapCreateOptions.None, BitmapCacheOption.Default);
-                        image.Source = decoder.Frames[0];
-                        break;
+
+                    switch (extension)
+                    {
+                        case ".jpg":
+                        case ".bmp":
+                        case ".png":
+                        case ".wdp":
+                        case ".tif":
+                            BitmapDecoder decoder = BitmapDecoder.Create(new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read), BitmapCreateOptions.None, BitmapCacheOption.Default);
+                            image.Source = decoder.Frames[0];
+                            break;
 
 
-                    case ".gif":
-                        var imageSource = new BitmapImage();
-                        imageSource.BeginInit();
-                        imageSource.UriSource = new Uri(path);
-                        imageSource.EndInit();
-                        ImageBehavior.SetAnimatedSource(image, imageSource);
-                        ImageBehavior.SetRepeatBehavior(image, RepeatBehavior.Forever);
-                        break;
+                        case ".gif":
+                            var imageSource = new BitmapImage();
+                            imageSource.BeginInit();
+                            imageSource.UriSource = new Uri(path);
+                            imageSource.EndInit();
+                            ImageBehavior.SetAnimatedSource(image, imageSource);
+                            ImageBehavior.SetRepeatBehavior(image, RepeatBehavior.Forever);
+                            break;
 
-                    default:
-                        throw new NotSupportedException($"Extension '{extension}' is not supported.");
+                        default:
+                            throw new NotSupportedException($"Extension '{extension}' is not supported.");
+                    }
                 }
             }
             catch (Exception ex)

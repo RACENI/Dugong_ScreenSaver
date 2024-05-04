@@ -13,7 +13,7 @@
         </Canvas>
         <CheckBox Name="tray" HorizontalAlignment="Left" Margin="123,198,0,0" VerticalAlignment="Top" Checked="Tray_Checked" Unchecked="Tray_Unchecked" Height="17" Width="156" Cursor="Hand"/>
         <CheckBox Name="clock" HorizontalAlignment="Left" Margin="123,146,0,0" VerticalAlignment="Top" Checked="Clock_Checked" Unchecked="Clock_Unchecked" Height="17" Width="202" Cursor="Hand"/>
-        <CheckBox Name="transparent" HorizontalAlignment="Left" Margin="123,294,0,0" VerticalAlignment="Top" Checked="transparent_Checked" Unchecked="transparent_Unchecked" Height="17" Width="256" Cursor="Hand"/>
+        <CheckBox Name="transparent" HorizontalAlignment="Left" Margin="123,303,0,0" VerticalAlignment="Top" Checked="transparent_Checked" Unchecked="transparent_Unchecked" Height="17" Width="161" Cursor="Hand"/>
         <CheckBox Name="maple" HorizontalAlignment="Left" Margin="123,249,0,0" VerticalAlignment="Top" Checked="Maple_Checked" Unchecked="Maple_Unchecked" Height="17" Width="256" Cursor="Hand"/>
 
     </Grid>
