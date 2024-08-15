@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using Screen_Saver.Utilities;
+using System;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Screen_Saver
@@ -19,39 +21,49 @@ namespace Screen_Saver
             string password = NNPW.Password;
             string confirmPassword = NNPW_Check.Password;
 
-            if (IsPasswordValid(password, confirmPassword))
+            if (isPasswordValid(password, confirmPassword))
             {
-                string encryptedPassword = EncryptPassword(password);
-                RegistryKeySetting.SetValue("PW", encryptedPassword);
+                try
+                {
+                    AESEncryptDecrypt aes = new AESEncryptDecrypt();
+                    string encryptedPassword = aes.encryptAES(password);
 
-                MessageBox.Show($"초기 비밀번호 설정이 완료되었습니다.\n\n설정된 비밀번호: {password}", fsetting.cap);
-                Close();
+                    if (encryptedPassword != null)
+                    {
+                        RegistryKeySetting.SetValue("PW", encryptedPassword);
+
+                        MessageBox.Show($"초기 비밀번호 설정이 완료되었습니다.\n\n설정된 비밀번호: {password}", Setting.cap);
+                        Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("비밀번호 설정에 실패했습니다.", Setting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                catch(Exception ex)
+                {
+                    ExceptionLogger.LogException(ex);
+                    MessageBox.Show("비밀번호 설정에 실패했습니다.", Setting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
+
+                }
             }
         }
 
         // 비밀번호 유효성 검사
-        private bool IsPasswordValid(string password, string confirmPassword)
+        private bool isPasswordValid(string password, string confirmPassword)
         {
             if (password.Length < 3 || password.Length > 30)
             {
-                MessageBox.Show("비밀번호는 3자 이상 30자 이하이어야 합니다.", fsetting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("비밀번호는 3자 이상 30자 이하이어야 합니다.", Setting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
             if (password != confirmPassword)
             {
-                MessageBox.Show("비밀번호가 일치하지 않습니다.", fsetting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("비밀번호가 일치하지 않습니다.", Setting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-
             return true;
-        }
-
-        // 비밀번호 암호화
-        private string EncryptPassword(string password)
-        {
-            AESEncryptDecrypt aes = new AESEncryptDecrypt();
-            return aes.AESEncrypt(password, aes.GetKey(), aes.GetIV());
         }
 
 

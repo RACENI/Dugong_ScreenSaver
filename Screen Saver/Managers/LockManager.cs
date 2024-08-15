@@ -22,7 +22,7 @@ namespace Screen_Saver.Managers
             {
                 DispatcherTimer timer = null;
 
-                /*if (RegistryKeySetting.GetValue("maple") == "is") // 미구현
+                /*if (RegistryKeySetting.GetValue("maple") == "is") // 미구현c (게임별로 enum객체 생성)
                 {
                     timer = startTimer();
                 }*/

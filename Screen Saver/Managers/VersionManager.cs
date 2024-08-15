@@ -16,7 +16,7 @@ namespace Screen_Saver.Managers
         {
             try
             {
-                var req = WebRequest.CreateHttp(fsetting.versionURL);
+                var req = WebRequest.CreateHttp(Setting.versionURL);
 
                 using (var res = req.GetResponse())
                 {
@@ -26,7 +26,7 @@ namespace Screen_Saver.Managers
                         {
                             var remoteVersion = reader.ReadLine().TrimEnd();
 
-                            return (fsetting.version == remoteVersion) ? CheckFlag.NEW : CheckFlag.OLD;
+                            return (Setting.version == remoteVersion) ? CheckFlag.NEW : CheckFlag.OLD;
                         }
                     }
                 }

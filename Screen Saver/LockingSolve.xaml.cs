@@ -53,9 +53,10 @@ namespace Screen_Saver
 
             try
             {
-                if (enteredPassword == aes.AESDecrypt(Convert.FromBase64String(storedPassword), aes.GetKey(), aes.GetIV()))
+                string plainPassword = aes.decryptAES(storedPassword);
+                if (enteredPassword == plainPassword)
                 {
-                    if (MessageBox.Show("잠금해제 하시겠습니까?", fsetting.cap, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    if (MessageBox.Show("잠금해제 하시겠습니까?", Setting.cap, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                     {
                         lockingWindow.Close();
                         this.Close();
@@ -63,13 +64,13 @@ namespace Screen_Saver
                 }
                 else
                 {
-                    MessageBox.Show("비밀번호를 확인해주세요.", fsetting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("비밀번호를 확인해주세요.", Setting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             catch (Exception ex)
             {
                 ExceptionLogger.LogException(ex);
-                MessageBox.Show("알수없는 오류가 발생하였습니다.", fsetting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("알수없는 오류가 발생하였습니다.", Setting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

@@ -11,7 +11,7 @@
     
     <Grid>
         <Grid.Background>
-            <ImageBrush Stretch="Fill" ImageSource="image/UI_default.png" AlignmentY="Top" AlignmentX="Center"/>
+            <ImageBrush Stretch="Fill" ImageSource="image/UIdefault.png" AlignmentY="Top" AlignmentX="Center"/>
         </Grid.Background>
         <Image x:Name="image"/>
         <Button Click="Button_Click" Background="Transparent" BorderBrush="Transparent" Foreground="Transparent" OpacityMask="Transparent"/>

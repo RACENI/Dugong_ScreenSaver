@@ -36,7 +36,7 @@ namespace Screen_Saver.Managers
             switch (lockManager.LockScreen())
             {
                 case LockManager.LockFlag.PASSWORD_ERROR:
-                    MessageBox.Show("비밀번호를 설정해주십시오.", fsetting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("비밀번호를 설정해주십시오.", Setting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
                     break;
             }
         }

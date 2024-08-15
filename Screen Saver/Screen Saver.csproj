@@ -118,7 +118,7 @@
     <Compile Include="Managers\TrayManager.cs" />
     <Compile Include="Managers\VersionManager.cs" />
     <Compile Include="Utilities\AESEncryptDecrypt.cs" />
-    <Compile Include="Models\fsetting.cs" />
+    <Compile Include="Models\Setting.cs" />
     <Compile Include="Utilities\ExceptionLogger.cs" />
     <Compile Include="Utilities\RegistryKeySetting.cs" />
     <Compile Include="Managers\TcpServer.cs" />
@@ -222,9 +222,6 @@
     <Resource Include="icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="image\UI_default.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="image\세팅창.png" />
   </ItemGroup>
   <ItemGroup>
@@ -238,7 +235,9 @@
     <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.3.3.2\analyzers\dotnet\cs\Microsoft.NetFramework.Analyzers.dll" />
     <Analyzer Include="..\packages\Microsoft.NetFramework.Analyzers.3.3.2\analyzers\dotnet\cs\Microsoft.NetFramework.CSharp.Analyzers.dll" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="image\UIdefault.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

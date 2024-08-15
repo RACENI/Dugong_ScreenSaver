@@ -127,7 +127,7 @@ namespace Screen_Saver
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"이미지 불러오는 것에 실패했습니다. \r\n지원되지 않는 형식 : {ex.Message}", fsetting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"이미지 불러오는 것에 실패했습니다. \r\n지원되지 않는 형식 : {ex.Message}", Setting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

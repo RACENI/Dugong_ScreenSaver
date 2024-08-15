@@ -1,6 +1,6 @@
 ﻿namespace Screen_Saver
 {
-    static class fsetting
+    static class Setting
     {
         public static string version = "2.1";
         public static string cap = "듀공 화면 잠금기";

@@ -48,7 +48,7 @@ namespace Screen_Saver.Managers
                                                                       //new System.Drawing.Icon(@"icon.ico");
                                                                       //notify.Icon = Properties.Resources.TiimeAlram;   // Resources 아이콘 사용 시
                 notify.ContextMenu = menu;
-                notify.Text = fsetting.cap;
+                notify.Text = Setting.cap;
 
                 // 아이콘 더블클릭 이벤트 설정
                 notify.DoubleClick += Notify_DoubleClick;
@@ -69,8 +69,13 @@ namespace Screen_Saver.Managers
                 item2.Text = "화면 잠금";
                 item2.Click += delegate (object click, EventArgs eClick)
                 {
-
-                    //screenSaverManager.Locking();
+                    LockManager lockManager = new LockManager();
+                    switch (lockManager.LockScreen())
+                    {
+                        case LockManager.LockFlag.PASSWORD_ERROR:
+                            MessageBox.Show("비밀번호를 설정해주십시오.", Setting.cap, MessageBoxButton.OK, MessageBoxImage.Error);
+                            break;
+                    }
                 };
 
                 System.Windows.Forms.MenuItem item3 = new System.Windows.Forms.MenuItem();

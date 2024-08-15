@@ -21,7 +21,7 @@ namespace Screen_Saver.Managers
             {
                 string selectedFile = openFileDialog.FileName;
                 string extension = Path.GetExtension(selectedFile).ToLower(new System.Globalization.CultureInfo("en-US", false)); // 확장자 소문자로 변경
-
+                MessageBox.Show(selectedFile);
                 // 파일 확장자에 따라 처리
                 switch (extension)
                 {
@@ -56,7 +56,7 @@ namespace Screen_Saver.Managers
         {
             try
             {
-                File.Copy(@"image\UI_default.png", @"image\UI.png", true);
+                File.Copy(@"image\UIdefault.png", @"image\UI.png", true);
                 RegistryKeySetting.SetValue("extension", ".png");
                 return ImageFlag.COMPLETE;
             }
@@ -72,7 +72,7 @@ namespace Screen_Saver.Managers
             }
         }
 
-        // 기존 이미지 파일 제거
+        // 기존 이미지 파일 제거 (덮어쓰기로 인해 사용 X)
         private bool DeleteExistingImageFiles()
         {
             try

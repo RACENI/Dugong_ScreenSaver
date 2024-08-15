@@ -7,112 +7,61 @@ namespace Screen_Saver
     class AESEncryptDecrypt
     {
         private RijndaelManaged rijndaelManaged = new RijndaelManaged();
+        private byte[] key = Convert.FromBase64String("NYPtX9SaRuneEin4f8tAJ46CDOT/L/JP4HiqTgsL8oA=");
+        private byte[] IV = Convert.FromBase64String("epcKQn87rxLE4QNyLwB5bw==");
 
-        public byte[] GetKey()
+        public byte[] getKey()
         {
             try
             {
-                //key 생성 및 값 삽입
-                if (RegistryKeySetting.GetValue("dgkah") == null)
-                {
-                    SetKey();
-                    byte[] key = rijndaelManaged.Key;
-                    return key;
-                }
-                else
-                {
-                    return Convert.FromBase64String(RegistryKeySetting.GetValue("dgkah"));
-                }
+                string key = "NYPtX9SaRuneEin4f8tAJ46CDOT/L/JP4HiqTgsL8oA=";
+                return Convert.FromBase64String(key);
             }
-            catch
+            catch(Exception e)
             {
-                throw;
+                throw new Exception("AES getKey Error: " + e);
             }
         }
 
-        public void SetKey()
+        public void setKey()
+        {
+           //키값을 생성해줌  
+           /*rijndaelManaged.GenerateKey();
+           rijndaelManaged.Key;*/
+        }
+
+        public byte[] getIV()
         {
             try
             {
-                //key 생성 및 값 삽입
-                if (RegistryKeySetting.GetValue("dgkah") == null)
-                {
-                    rijndaelManaged.GenerateKey();
-                    RegistryKeySetting.SetValue("dgkah", Convert.ToBase64String(rijndaelManaged.Key));
-                }
-                else
-                {
-                    RegistryKeySetting.DeleteValue("dgkah");
-                    RegistryKeySetting.SetValue("dgkah", Convert.ToBase64String(rijndaelManaged.Key));
-                }
+                string IV = "epcKQn87rxLE4QNyLwB5bw==";
+                return Convert.FromBase64String(IV);
             }
-            catch
+            catch(Exception e)
             {
-                throw;
+                throw new Exception("AES getIV Error: " + e);
             }
         }
 
-        public byte[] GetIV()
+        public void setIV()
         {
-            try
-            {
-                //IV 생성 및 값 삽입
-                if (RegistryKeySetting.GetValue("ddkl") == null)
-                {
-                    SetIV();
-                    byte[] IV = rijndaelManaged.IV;
-                    return IV;
-                }
-                else
-                {
-                    return Convert.FromBase64String(RegistryKeySetting.GetValue("ddkl"));
-                }
-            }
-            catch
-            {
-                throw;
-            }
-        }
-
-        public void SetIV()
-        {
-            try
-            {
-                //IV 생성 및 값 삽입
-                if (RegistryKeySetting.GetValue("ddkl") == null)
-                {
-                    rijndaelManaged.GenerateIV();
-                    RegistryKeySetting.SetValue("ddkl", Convert.ToBase64String(rijndaelManaged.IV));
-                }
-                else
-                {
-                    RegistryKeySetting.DeleteValue("ddkl");
-                    RegistryKeySetting.SetValue("ddkl", Convert.ToBase64String(rijndaelManaged.IV));
-                }
-            }
-            catch
-            {
-                throw;
-            }
+            //IV값 생성
+/*            rijndaelManaged.GenerateIV();
+            rijndaelManaged.IV;*/
         }
 
         //AES_256 암호화
-        public string AESEncrypt(string plainText, byte[] key, byte[] IV)
+        public string encryptAES(string plainText)
         {
             try
             {
                 if (plainText == null || plainText.Length <= 0)
-                    throw new ArgumentNullException("plainText");
-                if (key == null || key.Length <= 0)
-                    throw new ArgumentNullException("Key");
-                if (IV == null || IV.Length <= 0)
-                    throw new ArgumentNullException("IV");
+                    return null;
 
                 byte[] encrypted;
 
                 using (RijndaelManaged rijAlg = new RijndaelManaged())
                 {
-                    Console.WriteLine(key);
                     rijAlg.Key = key;
                     rijAlg.IV = IV;
 
@@ -126,7 +75,6 @@ namespace Screen_Saver
                         {
                             using (StreamWriter swEncrypt = new StreamWriter(csEncrypt))
                             {
-
                                 //Write all data to the stream.
                                 swEncrypt.Write(plainText);
                             }
@@ -136,25 +84,22 @@ namespace Screen_Saver
                 }
                 return Convert.ToBase64String(encrypted);
             }
-            catch
+            catch(Exception e)
             {
-                throw;
+                throw new Exception("AES encryptAES Error: " + e);
             }
         }
 
         //AES_256 복호화
-        public string AESDecrypt(byte[] decryptData, byte[] key, byte[] IV)
+        public string decryptAES(string encryptedText)
         {
+            if (encryptedText == null || encryptedText.Length <= 0)
+                return null;
+
+            byte[] decryptData = Convert.FromBase64String(encryptedText);
+
             try
             {
-                if (decryptData == null || decryptData.Length <= 0)
-                    throw new ArgumentNullException("cipherText");
-                if (key == null || key.Length <= 0)
-                    throw new ArgumentNullException("Key");
-                if (IV == null || IV.Length <= 0)
-                    throw new ArgumentNullException("IV");
-
-                // Declare the string used to hold
                 // the decrypted text.
                 string plaintext = null;
 
@@ -182,12 +127,11 @@ namespace Screen_Saver
                         }
                     }
                 }
-
                 return plaintext;
             }
-            catch
+            catch(Exception e)
             {
-                throw;
+                throw new Exception("AES decryptAES Error: " + e); ; ;
             }
         }
     }
