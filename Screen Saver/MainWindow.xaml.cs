@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using Screen_Saver.Managers;
 using Screen_Saver.Utilities;
+using Screen_Saver.WebSocket;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -17,6 +18,8 @@ namespace Screen_Saver
     {
         private readonly ScreenSaverManager ScreenSaverManager;
         private readonly TrayManager TrayManager;
+        private WebSocketServerManager _serverManager;
+
         private double width, height; // 크기조절을 위한 초기값
 
         #region Initialization Region
@@ -41,6 +44,8 @@ namespace Screen_Saver
                 TrayManager.TrayOpen();
                 MessageBox.Show("트레이 모드로 실행됩니다.", Setting.cap);
             }
+
+            InitializeWebSocketServer();
         }
 
         private void InitializeWindowSize()
@@ -54,6 +59,17 @@ namespace Screen_Saver
             {
                 RegistryKeySetting.SetValue("extension", "png");
             }
+        }
+        private void InitializeWebSocketServer()
+        {
+            // WebSocketServerManager를 생성하고 초기화합니다.
+            _serverManager = new WebSocketServerManager("ws://localhost:8080");
+
+            // Echo 서비스를 추가합니다.
+            _serverManager.addService<Dugong>("/dugong");
+
+            // 서버를 시작합니다.
+            _serverManager.startServer();
         }
         #endregion
 
